@@ -1,0 +1,14 @@
+{
+  "name": "netflix-gpt",
+  "version": "1.0.0",
+  "description": "This is a netflix project ",
+  "main": "App.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^19.0.0"
+  }
+}
