@@ -1,16 +1,23 @@
 import { BACKGROUND_IMG } from "../constants/constant";
+import HoverButton from "../utils/HoverButton";
+import LogoutButton from "../utils/LogoutButton";
 import Header from "./Header";
+import { useState } from "react";
 
 const Login = () => {
+  const [isSignInForm, setIsSignInForm] = useState(true);
+  const toggleIsSignInForm = () => {
+    setIsSignInForm(!isSignInForm);
+  };
   return (
-    <div className="bg-gradient-to-b from-black">
+    <div className="">
       <Header />
-      <div className="absolute">
+      <div className="absolute bg-gradient-to-b from-black">
         <img
-          className="-z-10 block overflow-hidden"
+          className="-z-10 block overflow-hidden brightness-50"
           src={BACKGROUND_IMG}
           alt="background-image"
-          srcset=""
+          srcSet=""
         />
       </div>
       <div
@@ -19,13 +26,25 @@ const Login = () => {
           backgroundImage: "url(https://example.com/background-image.jpg)",
         }}
       >
-        <div className="bg-black bg-opacity-80 text-white rounded-lg p-8 sm:w-96 w-11/12 absolute">
-          <h1 className="text-3xl font-bold mb-6 text-center">Sign In</h1>
+        <div className="bg-black bg-opacity-80 text-white rounded-lg p-14 w-[30%] absolute">
+          {isSignInForm ? (
+            <HoverButton name="Sign In" />
+          ) : (
+            <HoverButton name="Sign Up" />
+          )}
+
           <form className="flex flex-col space-y-4">
+            {!isSignInForm && (
+              <input
+                type="text"
+                placeholder="Full Name"
+                className="p-3 rounded bg-transparent border border-white text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white my-3"
+              />
+            )}
             <input
               type="email"
               placeholder="Email or mobile number"
-              className="p-3 rounded bg-transparent border border-white text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white"
+              className="p-3 rounded bg-transparent border border-white text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white my-3"
             />
             <input
               type="password"
@@ -33,12 +52,12 @@ const Login = () => {
               className="p-3 rounded border border-white bg-transparent  text-white  focus:outline-none focus:ring-2 focus:ring-white"
             />
             <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 rounded">
-              Sign In
+              {isSignInForm ? "Sign In" : "Sign Up"}
             </button>
             <div className="flex justify-center items-center">
               <span className="text-gray-400">OR</span>
             </div>
-            <button className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 rounded">
+            <button className="bg-[rgba(128,128,128,0.4)] hover:opacity-90 text-white font-bold py-2 rounded">
               Use a sign-in code
             </button>
           </form>
@@ -52,9 +71,13 @@ const Login = () => {
             <span className="text-sm text-gray-400">Remember me</span>
           </div>
           <div className="mt-6 text-center text-gray-400 text-sm">
-            New to Netflix?{" "}
-            <a href="#" className="text-white font-semibold hover:underline">
-              Sign up now.
+            {isSignInForm ? "New to Netflix?" : "Alreadt a user?"}{" "}
+            <a
+              href="#"
+              className="text-white font-semibold hover:underline"
+              onClick={toggleIsSignInForm}
+            >
+              {isSignInForm ? "Sign Up" : "Sign In"} now.
             </a>
           </div>
           <div className="mt-4 text-center text-xs text-gray-400">
@@ -66,15 +89,6 @@ const Login = () => {
           </div>
         </div>
       </div>
-      {/* <form className="bg-black text-white absolute top-32 left-[40%] py-12 px-16 flex flex-col justify-around items-center bg-opacity-80 w-[450px] h-3/4">
-        <h1 className='font-bold text-2xl top-0'>Sign In</h1>
-        <input type="email" className='p-3 bg-gray-900 m-2' placeholder='Email or mobile number'/>
-        <input type="password"  className='p-2 m-2' placeholder='Password'/>
-        <button>Sign In</button>
-        <span>OR</span>
-        <button>Use a sign-in code</button>
-        <a href="">Forgot password?</a>
-      </form> */}
     </div>
   );
 };
