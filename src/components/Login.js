@@ -7,10 +7,12 @@ import Alert from "../common/Alert";
 import { auth } from "../utils/firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { alertWithTimer } from "../utils/helper";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [alerts, setAlerts] = useState([]);
+  const navigate = useNavigate();
 
   const email = useRef();
   const password = useRef();
@@ -44,6 +46,7 @@ const Login = () => {
         .then((userCredential) => {
           const user = userCredential.user;
           console.log(user);
+          navigate("/browse");
         })
         .catch((error) => {
           alertWithTimer(
@@ -56,6 +59,7 @@ const Login = () => {
         .then((userCredential) => {
           const user = userCredential.user;
           console.log(user);
+          navigate("/browse")
         })
         .catch((error) => {
           console.log(error);

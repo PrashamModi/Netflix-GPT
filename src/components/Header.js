@@ -1,10 +1,14 @@
 import React from 'react'
 import { NETFLIX_LOGO_URL } from '../constants/constant'
+import SignoutBox from './SignoutBox'
 
 const Header = () => {
   return (
-    <div className=' py-2 px-8 absolute bg-gradient-to-b from-black w-full z-10 cursor-pointer'>
+    <div className=' py-2 px-8 absolute bg-gradient-to-b from-black w-full z-10 cursor-pointer flex justify-between items-center'>
       <img className='w-44 mx-24 brightness-125 transform transition-all hover:scale-125' src={NETFLIX_LOGO_URL} alt="LOGO" srcSet="" />
+      <div>
+        <SignoutBox />
+      </div>
     </div>
   )
 }
